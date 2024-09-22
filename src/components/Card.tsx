@@ -7,7 +7,7 @@ function Card(props: Props) {
     const {image, name, onClick} = props;
 
     return (
-        <div>
+        <div className="card">
             <img src={image}></img>
             <h1>{name}</h1>
         </div>

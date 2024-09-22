@@ -1,26 +1,12 @@
 import { useState, useEffect } from "react";
+import { getImages } from "../functions/getImages";
 import Card from "./Card";
 
 function GameBoard(props) {
     const {scores, setScores} = props;
-    const [cards, setCards] = useState([
-        {
-            id:1,
-            name: "",
-            image: "",
-            clicked:false
-        },
-        {
-            id:2,
-            name: "",
-            image: "",
-            clicked:false
-        }
-    ])
+    const [cards, setCards] = useState(getImages(8));
 
-    useEffect(()=>{
-        //get images and names here.
-    }, [])
+    //randomize cards
 
     const handleClick = (card) => {
         if(!card.clicked){

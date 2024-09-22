@@ -12,13 +12,16 @@ function App() {
 
   return (
     <>
-      <h1>Memory Game</h1>
-      <ul>
-        <li>Score: {scores.score}</li>
-        <li>High Score: {scores.highScore}</li>
-      </ul>
-
-      <GameBoard scores={scores} setScores={setScores}/>
+      <header>
+        <h1>Memory Game</h1>
+        <ul>
+          <li>Score: {scores.score}</li>
+          <li>High Score: {scores.highScore}</li>
+        </ul>
+      </header>
+      <main>
+        <GameBoard scores={scores} setScores={setScores}/>
+      </main>
     </>
   )
 }
