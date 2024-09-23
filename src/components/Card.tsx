@@ -4,7 +4,7 @@ interface Props {
     name: string;
 }
 function Card(props: Props) {
-    const {image, name, onClick} = props;
+    const {image, name} = props;
 
     return (
         <div className="card">

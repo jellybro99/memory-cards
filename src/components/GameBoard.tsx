@@ -2,12 +2,24 @@ import { useState, useEffect } from "react";
 import { getImages } from "../functions/getImages";
 import Card from "./Card";
 
+interface CardData {
+    id: number;
+    name: string;
+    image: string;
+    clicked: boolean;
+}
+
 function GameBoard(props) {
     const {scores, setScores} = props;
-    const [cards, setCards] = useState(getImages(8));
+    const [cards, setCards] = useState<CardData[]>([]);
 
-    //randomize cards
+    useEffect(() => {
+        getImages(8).then((cards)=>{
+            setCards(cards)
+        })
+    }, []);
 
+    /*
     const handleClick = (card) => {
         if(!card.clicked){
             setScores({...scores, [scores]: scores + 1})
@@ -17,11 +29,12 @@ function GameBoard(props) {
             setScores({...scores, [scores]: 0})
             //reset cards
         }
-    }
+    }*/
+    //{cards.map((card)=>(<Card key={card.id} name={card.name} image={card.image}/>))}
 
     return (
         <div>
-            {cards.map((card)=><Card card={card} onClick={()=>handleClick(card)}/>)}
+            {cards.map((card)=>(<Card key={card.id} name={card.name} image={card.image}/>))}
         </div>
     )
 }
