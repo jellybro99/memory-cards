@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getImages } from "../functions/getImages";
+import { getRandomPokemans } from "../functions/getRandomPokemans";
 import Card from "./Card";
 
 interface CardData {
@@ -10,13 +10,11 @@ interface CardData {
 }
 
 function GameBoard(props) {
-    const {scores, setScores} = props;
+    //const {scores, setScores} = props;
     const [cards, setCards] = useState<CardData[]>([]);
 
     useEffect(() => {
-        getImages(8).then((cards)=>{
-            setCards(cards)
-        })
+        getRandomPokemans(8, setCards);
     }, []);
 
     /*
@@ -33,7 +31,7 @@ function GameBoard(props) {
     //{cards.map((card)=>(<Card key={card.id} name={card.name} image={card.image}/>))}
 
     return (
-        <div>
+        <div className="">
             {cards.map((card)=>(<Card key={card.id} name={card.name} image={card.image}/>))}
         </div>
     )
