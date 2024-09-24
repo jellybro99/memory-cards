@@ -48,7 +48,6 @@ function GameBoard(props: Props) {
             });
             //reset cards
             getRandomPokemans(8).then(newCards => setCards(newCards));
-            //setCards(cards.map(c => ({ ...c, clicked: false })));
         }
     }
 

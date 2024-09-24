@@ -1,11 +1,5 @@
-interface CardData {
-    id: number;
-    name: string;
-    image: string;
-    clicked: boolean;
-}
 
-export function randomizeCards(arr: CardData[]): CardData[] {
+export function randomizeCards<Type>(arr: Type[]): Type[] {
     const shuffled = [...arr];
 
     let currentIndex = shuffled.length;
