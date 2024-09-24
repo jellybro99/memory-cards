@@ -1,3 +1,4 @@
+import "../styles/Card.css"
 
 interface Props {
     image: string;

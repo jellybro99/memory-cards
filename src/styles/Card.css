@@ -1,0 +1,9 @@
+.card {
+    border: black solid 1px;
+    border-radius: .5px;
+    cursor:pointer;
+}
+
+.card:hover {
+    background-color: lightblue;
+}

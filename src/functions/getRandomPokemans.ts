@@ -5,12 +5,12 @@ interface CardData {
     clicked: boolean;
 }
 
-export async function getRandomPokemans(numImages: number, setPokemans: any) {
+export async function getRandomPokemans(numPokemans: number):Promise<CardData[]> {
     const apiPokemon: string = "https://pokeapi.co/api/v2/pokemon/";
     const apiPokemonPhoto: string = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
     const pokemonIds: number[] = [];
 
-    while(pokemonIds.length < numImages){
+    while(pokemonIds.length < numPokemans){
         const pokemonId = Math.floor(Math.random() * 1025) + 1
         if(!pokemonIds.includes(pokemonId)) pokemonIds.push(pokemonId);
     }
@@ -19,11 +19,12 @@ export async function getRandomPokemans(numImages: number, setPokemans: any) {
         return fetch(apiPokemon + id).then(response => response.json()).then(data => {
             return {
                 id: id,
-                name: data.name,
+                name: "" + data.name,
                 image: apiPokemonPhoto + id + ".png",
                 clicked:false
             }
         });
     })
-    setPokemans(await Promise.all(pokemonPromises))
+
+    return await Promise.all(pokemonPromises);
 }

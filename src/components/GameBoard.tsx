@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { getRandomPokemans } from "../functions/getRandomPokemans";
+import { randomizeCards } from "../functions/randomizeCards";
 import Card from "./Card";
+import "../styles/GameBoard.css"
 
 interface CardData {
     id: number;
@@ -9,26 +11,46 @@ interface CardData {
     clicked: boolean;
 }
 
-function GameBoard(props) {
-    //const {scores, setScores} = props;
+interface Props {
+    scores: {
+        score: number;
+        highScore: number;
+    };
+    setScores: (score: {
+        score:number;
+        highScore: number;
+    }) => void;
+}
+
+function GameBoard(props: Props) {
+    const {scores, setScores} = props;
     const [cards, setCards] = useState<CardData[]>([]);
 
     useEffect(() => {
-        getRandomPokemans(8, setCards);
+        getRandomPokemans(8).then(newCards => setCards(newCards));        
     }, []);
 
-    /*
-    const handleClick = (card) => {
+    
+    const handleClick = (card: CardData) => {
         if(!card.clicked){
-            setScores({...scores, [scores]: scores + 1})
-            //flip and randomize
+            setScores({
+                score: scores.score + 1,
+                highScore: Math.max(scores.score + 1, scores.highScore)
+            });
+            setCards(randomizeCards(cards.map(c => 
+                c.id === card.id ? { ...c, clicked: true } : c
+            )));
         }
         if(card.clicked){
-            setScores({...scores, [scores]: 0})
+            setScores({
+                score: 0,
+                highScore: scores.highScore
+            });
             //reset cards
+            getRandomPokemans(8).then(newCards => setCards(newCards));
+            //setCards(cards.map(c => ({ ...c, clicked: false })));
         }
-    }*/
-    //{cards.map((card)=>(<Card key={card.id} name={card.name} image={card.image}/>))}
+    }
 
     return (
         <div className="">
