@@ -52,7 +52,7 @@ function GameBoard(props: Props) {
     }
 
     return (
-        <div className="">
+        <div className="gameboard">
             {cards.map((card)=>(<Card key={card.id} name={card.name} image={card.image} handleClick={() => handleClick(card)}/>))}
         </div>
     )
