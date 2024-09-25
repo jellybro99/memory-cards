@@ -1,3 +1,7 @@
+body {
+    background-color: aliceblue;
+}
+
 .gameboard {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -5,4 +9,5 @@
     border: black solid .2rem;
     border-radius:.3rem;
     padding: 1rem;
+    background: white;
 }
